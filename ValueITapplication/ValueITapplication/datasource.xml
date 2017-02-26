@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<connection>
+  <address>192.168.0.18</address>
+  <port>19023</port>
+</connection>
