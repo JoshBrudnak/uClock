@@ -13,7 +13,6 @@
         void ClockOut();
 
         DataTable Login(string user, string password);
-
     }
 
     /// <summary>
@@ -22,14 +21,18 @@
     public class SqlCommand
     {
         private DataTable dt = new DataTable();
-        
-        private static string[] connection = getConnection();
+        private string[] connection = new string[2];
 
-        SocketSQL sql = new SocketSQL( connection[0], int.Parse(connection[1]));
-
+        SocketSQL sql; 
         Util tool = new Util();
 
-        public static string[] getConnection()
+        public SqlCommand()
+        {
+            connection = getConnection();
+            sql = new SocketSQL( connection[0], int.Parse(connection[1]));
+        }
+
+        public string[] getConnection()
         {
             string[] connect = new string[2];
 
@@ -41,7 +44,7 @@
             connect[0] = doc.ReadString();
             doc.ReadEndElement();
 
-            doc.ReadStartElement("uid");
+            doc.ReadStartElement("port");
             connect[1] = doc.ReadString();
             doc.ReadEndElement();
 
@@ -295,17 +298,7 @@
             dt1 = (DataTable)JsonConvert.DeserializeObject(usr, typeof(DataTable));
             this.dt.Merge(dt1);
 
-            /*
-                        do
-                        {
-                            string usr = sql.NetSQLCommand("SELECT * FROM TimeClock WHERE MONTH(dt) = " + year + " ORDER BY dt DESC LIMIT " + i + "," + i + 7 + ";");
-            
-                            dt1 = (DataTable)JsonConvert.DeserializeObject(usr, (typeof(DataTable)));
-                            dt.Merge(dt1);
-                            i = i + 7;
-                        }
-                        while (i < 365);
-                        */
+           
             return this.dt;
         }
 
