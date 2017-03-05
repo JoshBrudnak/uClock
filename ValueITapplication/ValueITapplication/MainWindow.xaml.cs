@@ -27,9 +27,9 @@
     {
         
         private SqlCommand com = new SqlCommand();
-        DataTable dt = new DataTable();
-        Util tool = new Util();
-        ObservableCollection<Person> Names;
+        private DataTable dt = new DataTable();
+        private Util tool = new Util();
+        private ObservableCollection<Person> Names;
 
         
         
