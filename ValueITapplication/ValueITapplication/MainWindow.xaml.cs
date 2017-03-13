@@ -1,4 +1,4 @@
-﻿namespace ValueITapplication
+﻿namespace ValueITApplication
 {
     using System;
     using System.Collections.ObjectModel;
@@ -8,31 +8,13 @@
     using System.Windows.Controls;
     using System.Windows.Threading;
 
-    /// <summary>
-    /// Used to create a list of users
-    /// </summary>
-    public class Person
-    {
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-
-            set { _name = value; }
-        }
-    }
-
     public partial class MainWindow : Window
     {
-        
+
         private SqlCommand com = new SqlCommand();
         private DataTable dt = new DataTable();
         private Util tool = new Util();
         private ObservableCollection<Person> Names;
-
-        
-        
 
         private string col;
         private string nm;
@@ -42,7 +24,7 @@
         private bool timecardb;
 
         public MainWindow()
-        {       
+        {
 
             Names = new ObservableCollection<Person>();
 
@@ -73,7 +55,7 @@
 
             string date = tool.CurrDate().ToString();
             dtLabel.Content = date;
-            
+
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -111,7 +93,7 @@
             dt = com.SelectTime(nm);
             data.ItemsSource = dt.DefaultView;
         }
-        
+
         // Initial log in button
         private void logIn_Click(object sender, RoutedEventArgs e)
         {
@@ -122,21 +104,23 @@
 
             this.logInGrid.Visibility = Visibility.Visible;
         }
-        
+
         // Final log in button
         void finSignIn_Click(object sender, RoutedEventArgs e)
         {
             this.errorLabel.Visibility = Visibility.Hidden;
             dt = this.com.Login(this.usr_n.Text, this.user_password.Password);
 
-            if (dt.Rows.Count == 0){
-            
+            if (dt.Rows.Count == 0)
+            {
+
                 this.errorLabel.Visibility = Visibility.Visible;
                 this.usr_n.Clear();
                 this.user_password.Clear();
             }
-            else {
-            
+            else
+            {
+
                 string cl = dt.Rows[0][3].ToString();
                 this.nm = dt.Rows[0][0].ToString();
                 this.nserv.Visibility = Visibility.Collapsed;
@@ -196,7 +180,7 @@
                 this.user_password.Clear();
             }
         }
-        
+
         // log off button
         private void logoff_Click(object sender, RoutedEventArgs e)
         {
@@ -216,7 +200,7 @@
             dtLabel.Visibility = Visibility.Visible;
             logIn.Visibility = Visibility.Visible;
         }
-        
+
         // Cancel Button event Handler
         private void cancelbtn_Click(object sender, RoutedEventArgs e)
         {
@@ -263,7 +247,7 @@
         // 1st Administrative tools button
         private void AdminTools_Click(object sender, RoutedEventArgs e)
         {
-            
+
             this.usrpan.Visibility = Visibility.Collapsed;
             this.data3.Visibility = Visibility.Collapsed;
             this.vwTime.Visibility = Visibility.Collapsed;
@@ -284,7 +268,7 @@
 
             this.bugR.Visibility = Visibility.Visible;
         }
-        
+
         // 2nd Administrative Projects Button
         private void projSched_Click(object sender, RoutedEventArgs e)
         {
@@ -309,7 +293,7 @@
 
             this.emppan.Visibility = Visibility.Visible;
         }
-        
+
         // 3rd Administrative Button user Control
         private void AdminT_Click(object sender, RoutedEventArgs e)
         {
@@ -371,7 +355,7 @@
         // 5th Administrative Button time Card
         private void timc_Click(object sender, RoutedEventArgs e)
         {
-           
+
             this.sqlpan.Visibility = Visibility.Collapsed;
             this.bugEnter.Visibility = Visibility.Collapsed;
             this.bugR.Visibility = Visibility.Collapsed;
@@ -419,7 +403,7 @@
             this.tabCon.Visibility = Visibility.Collapsed;
 
             empGrid.Visibility = Visibility.Visible;
-           
+
             dt = com.selectEmployee();
             this.empDataGrid.ItemsSource = dt.DefaultView;
             dt.Clear();
@@ -537,7 +521,7 @@
             this.com.CreateTask(title, desc, emp, dt);
             this.slab1.Visibility = Visibility.Visible;
         }
-        
+
         //Create Project final button
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
@@ -561,22 +545,25 @@
             this.emppan.Visibility = Visibility.Visible;
         }
 
-        
+
 
         // View combo box
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.data3.Visibility = Visibility.Visible;
             this.view = this.viewSelect.SelectedValue.ToString();
-            if (this.viewSelect.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Week") { 
+            if (this.viewSelect.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Week")
+            {
                 dt = this.com.SelectAllTime();
                 this.data3.ItemsSource = dt.DefaultView;
             }
-            else if (this.viewSelect.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Month") { 
+            else if (this.viewSelect.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Month")
+            {
                 dt = this.com.SelectTimeM();
                 this.data3.ItemsSource = dt.DefaultView;
             }
-            else if (this.viewSelect.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Year") { 
+            else if (this.viewSelect.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Year")
+            {
                 dt = this.com.SelectTimeY();
                 this.data3.ItemsSource = dt.DefaultView;
             }
@@ -606,7 +593,7 @@
             }
         }
 
-        
+
 
         // 2nd Administrative Tools Button Edit Users
         private void editusr_Click(object sender, RoutedEventArgs e)
@@ -652,14 +639,14 @@
             this.usrpan.Visibility = Visibility.Collapsed;
         }
 
-        
+
 
         private void schedpv_Click(object sender, RoutedEventArgs e)
         {
             this.emppan.Visibility = Visibility.Collapsed;
         }
 
-        
+
 
         // Employee stat Task View
         private void schedv_Click(object sender, RoutedEventArgs e)
@@ -693,7 +680,7 @@
             this.sqlpan.Visibility = Visibility.Visible;
         }
 
-        
+
 
         // view Users
         private void viewusr_Click(object sender, RoutedEventArgs e)
@@ -714,7 +701,7 @@
             this.totH2.Visibility = Visibility.Collapsed;
         }
 
-        
+
 
         // Add an employee button
         private void empAdd_Click(object sender, RoutedEventArgs e)
@@ -738,16 +725,16 @@
 
             if (win.remUsr())
             {
-                com.DeleteEmployee(selVal);      
+                com.DeleteEmployee(selVal);
                 win.Close();
-                
+
             }
-        
-            else if(win.remUsr() == false)
+
+            else if (win.remUsr() == false)
             {
                 win.Close();
             }
-         
+
         }
 
         // Final add employee button
@@ -759,7 +746,7 @@
             emDt[2] = empAddrfd.Text.ToString();
             emDt[3] = empPhoneNumfd.Text.ToString();
             emDt[4] = empEmailfd.Text.ToString();
-            
+
             try
             {
                 com.AddEmployee(emDt[0], emDt[1], emDt[2], emDt[3], emDt[4]);
@@ -778,7 +765,7 @@
                 empError.Visibility = Visibility.Visible;
                 Console.WriteLine(ex.Message);
             }
-            
+
 
             empSucess.Visibility = Visibility.Visible;
             empError.Visibility = Visibility.Collapsed;
@@ -811,7 +798,7 @@
                 empDataGrid.UnselectAll();
             }
 
-            
+
         }
 
         private void usrAddcheck_Checked(object sender, RoutedEventArgs e)

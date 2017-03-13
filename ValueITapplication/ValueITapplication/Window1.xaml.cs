@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace ValueITapplication
+namespace ValueITApplication
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class Window1 : Window
     {
-       
+
         public bool remUser;
 
         public Window1()
@@ -37,14 +37,14 @@ namespace ValueITapplication
         private void canBtn_Click(object sender, RoutedEventArgs e)
         {
             remUser = false;
-            
+
             this.Visibility = Visibility.Hidden;
         }
 
         private void yesBtn_Click(object sender, RoutedEventArgs e)
         {
             remUser = true;
-            
+
             this.Visibility = Visibility.Hidden;
         }
     }

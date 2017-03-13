@@ -1,7 +1,7 @@
-﻿<Application x:Class="ValueITapplication.App"
+﻿<Application x:Class="ValueITApplication.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ValueITapplication"
+             xmlns:local="clr-namespace:ValueITApplication"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

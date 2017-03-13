@@ -1,5 +1,5 @@
 ﻿
-namespace ValueITapplication
+namespace ValueITApplication
 {
     using System;
     using System.Net.NetworkInformation;
@@ -65,7 +65,8 @@ namespace ValueITapplication
 
         public bool CheckConnection()
         {
-            try { 
+            try
+            {
                 Ping myPing = new Ping();
                 String host = "google.com";
                 byte[] buffer = new byte[32];
@@ -74,7 +75,8 @@ namespace ValueITapplication
                 PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
                 return (reply.Status == IPStatus.Success);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return false;
             }
         }

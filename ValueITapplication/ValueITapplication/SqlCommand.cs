@@ -1,4 +1,4 @@
-﻿namespace ValueITapplication
+﻿namespace ValueITApplication
 {
     using System;
     using System.Data;
@@ -23,13 +23,13 @@
         private DataTable dt = new DataTable();
         private string[] connection = new string[2];
 
-        SocketSQL sql; 
+        SocketSQL sql;
         Util tool = new Util();
 
         public SqlCommand()
         {
             connection = getConnection();
-            sql = new SocketSQL( connection[0], int.Parse(connection[1]));
+            sql = new SocketSQL(connection[0], int.Parse(connection[1]));
         }
 
         public string[] getConnection()
@@ -84,7 +84,7 @@
             string num = this.dt.Rows[0][7].ToString();
             int enu = int.Parse(num);
             enu++;
-            string command2 = this.sql.NetSQLCommand( "INSERT INTO TimeClock(dt, employee, clockIn, number) Values('" + finDate + "', '" + name + "', '" + finTime + "', " + enu + ");");
+            string command2 = this.sql.NetSQLCommand("INSERT INTO TimeClock(dt, employee, clockIn, number) Values('" + finDate + "', '" + name + "', '" + finTime + "', " + enu + ");");
         }
 
         public void ClockOut()
@@ -99,7 +99,7 @@
             string command3 = this.sql.NetSQLCommand("UPDATE TimeClock SET totalHours = TIMEDIFF(CURTIME(),'" + lastClock + "') WHERE number = '" + lastC + "';");
         }
 
-        
+
 
         public void CreateTask(string title, string description, string employee, string deadline)
         {
@@ -107,7 +107,7 @@
 
             string cdt = this.tool.CurrDate();
             string u =
-                this.sql.NetSQLCommand("INSERT INTO ProjectSchedule (category, title, description, emp, scheduled, deadline, completed, id) VALUES('Task' , '"+ title + "', '" + description + "', '" + employee + "', '" + cdt + "' , '" + deadline + "' , false, " + id + ");");
+                this.sql.NetSQLCommand("INSERT INTO ProjectSchedule (category, title, description, emp, scheduled, deadline, completed, id) VALUES('Task' , '" + title + "', '" + description + "', '" + employee + "', '" + cdt + "' , '" + deadline + "' , false, " + id + ");");
         }
 
         public void CreateProject(string title, string description, string startDate)
@@ -122,7 +122,7 @@
         {
             int id = this.getId("projectschedule", 9);
 
-            string u = this.sql.NetSQLCommand("INSERT INTO employeeData (empName, title, address, phoneNum, email, id) VALUES('" + name + "', '" + title + "', '" + address + "', '" + phoneNum + "' , '" + email+ "' , " + id + ");");
+            string u = this.sql.NetSQLCommand("INSERT INTO employeeData (empName, title, address, phoneNum, email, id) VALUES('" + name + "', '" + title + "', '" + address + "', '" + phoneNum + "' , '" + email + "' , " + id + ");");
         }
 
         public DataTable selectEmployee()
@@ -131,7 +131,7 @@
             {
                 string usr = this.sql.NetSQLCommand("SELECT * FROM employeeData;");
                 dt = (DataTable)JsonConvert.DeserializeObject(usr, typeof(DataTable));
-                
+
             }
             catch (Exception ex)
             {
@@ -147,14 +147,14 @@
                 string command = sql.NetSQLCommand("USE valueitdatabase;");
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return false;
             }
-            
+
         }
-        
+
 
         public DataTable Login(string user, string password)
         {
@@ -181,7 +181,7 @@
                 this.sql.NetSQLCommand(
                     "INSERT INTO Login (name, user_name, pwd, level) VALUES('" + nnm + "', '" + usrnm + "', '" + pass + "', " + lev + ");");
         }
-        
+
         public void DeleteEmployee(string name)
         {
             try
@@ -194,7 +194,7 @@
                 Console.WriteLine("ERROR");
             }
         }
-        
+
         public DataTable SelectAllTime()
         {
             string command4 =
@@ -251,7 +251,7 @@
 
         public DataTable SelectTime(string name)
         {
-            
+
             string command4 = this.sql.NetSQLCommand("SELECT * FROM (SELECT * FROM TimeClock WHERE employee= '" + name + "' ORDER BY number DESC LIMIT 0,7) r ORDER by clockin ASC;");
             this.dt = (DataTable)JsonConvert.DeserializeObject(command4, typeof(DataTable));
 
@@ -263,7 +263,7 @@
             string Month = DateTime.Now.Month.ToString();
             int i = 0;
             int g = 7;
-            
+
             string comm = this.sql.NetSQLCommand("SELECT COUNT(*) FROM TimeClock WHERE Month(dt) = " + Month + ";");
 
             DataTable dt2 = new DataTable();
@@ -298,7 +298,7 @@
             dt1 = (DataTable)JsonConvert.DeserializeObject(usr, typeof(DataTable));
             this.dt.Merge(dt1);
 
-           
+
             return this.dt;
         }
 
