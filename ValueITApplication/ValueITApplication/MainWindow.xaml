@@ -1,0 +1,430 @@
+﻿<Window x:Class="ValueITApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ValueITApplication"
+        mc:Ignorable="d"
+        Title="Value IT Consulting"
+        x:Name="nywin">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label x:Name="nserv" Content="Could not connect to the server" Margin="0,180,0,0" Foreground="Red" Visibility="Collapsed"/>
+            <Label x:Name="inconlab" Content="Could not connect to the Internet" HorizontalAlignment="Right" Margin="0,180,10,10" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <Label x:Name="tiLabel" Content="time" FontSize="60" Visibility="Collapsed" Height="100" Margin="10,160" VerticalAlignment="Top"/>
+        <Label x:Name="dtLabel" Content="Date" FontSize="60" Visibility="Collapsed" Margin="10,240,0,0" VerticalAlignment="Top"/>
+
+        <Grid Height="240" VerticalAlignment="Top" >
+            <Border BorderBrush="Black"
+	    BorderThickness="5"
+	    HorizontalAlignment="Stretch"
+	    Margin="0,0,0,70"
+	    VerticalAlignment="Stretch"/>
+            <Canvas VerticalAlignment="Top" Height="150" Width="Auto" HorizontalAlignment="Stretch" Background="Orange">
+                <Image Source="ValueITlogo.jpg" Height="100" Width="200"/>
+            </Canvas>
+            <StackPanel VerticalAlignment="Bottom" Height="90">
+                <Grid Height="20" Width="Auto">
+                    <Menu  Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="0,0,-0.4,0" Background="Black" Foreground="White">
+                        <MenuItem Header="File" >
+                            <MenuItem Header="Customize" Foreground="Black" Click="MenuItem_Click"/>
+                            <MenuItem Header="Settings" Foreground="Black" Click="MenuItem_Click_2"/>
+                            <MenuItem Header="Exit"  Foreground="Black" Click="MenuItem_Click_1"/>
+                        </MenuItem>
+                        <MenuItem Header="Edit" Visibility="Collapsed" Width="40">
+                            <MenuItem Header="Add Row"/>
+                            <MenuItem Header="Edit Row"/>
+                        </MenuItem>
+                        <MenuItem Header="Analyze" Width="50" Visibility="Hidden">
+                            <MenuItem Header="Math Toolbar" Margin="0,0,-0.2,0"/>
+                            <MenuItem Header="Average rows"/>
+                        </MenuItem>
+                    </Menu>
+                    <Button x:Name="logIn" Content="Log In" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="70" Click="logIn_Click" Visibility="Visible"/>
+                    <Button x:Name="logoff" Content="Log Off" HorizontalAlignment="Right" Width="70" Height="20" Visibility="Collapsed" Click="logoff_Click"/>
+                </Grid>
+
+                <ToolBar x:Name="emptool" VerticalAlignment="Bottom" Background="Black" Visibility="Collapsed">
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="40" Width="40" Click="Button_Click">
+                        <Image Source="icon2-info.png"/>
+                    </Button>
+                    <Button VerticalAlignment="Center" HorizontalAlignment="Left" Height="40" Width="40" Click="Button_Click_1">
+                        <Image Source="icon3.png"/>
+                    </Button>
+                </ToolBar>
+            </StackPanel>
+
+
+
+        </Grid>
+        <Grid x:Name="logInGrid" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Height="120" Width="200">
+            <StackPanel Height="60" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Label Content="Username" VerticalAlignment="Top" HorizontalAlignment="Left" ForceCursor="True"/>
+                <Label Content="Password" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Height="100" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <TextBox x:Name="usr_n" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Margin="0,8,0,8">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding ElementName=finSignIn, Mode=OneWay}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <PasswordBox x:Name="user_password" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Margin="0,0,0,8">
+
+
+                </PasswordBox>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button x:Name="cancelbtn" Content="Cancel" HorizontalAlignment="Left" Height="30" Width="60" Margin="0,0,10,0" Click="cancelbtn_Click"/>
+                    <Button x:Name="finSignIn" Content="Log In" HorizontalAlignment="Right" Height="30" Width="60" Click="finSignIn_Click">
+                    </Button>
+
+                </StackPanel>
+            </StackPanel>
+
+            <Label x:Name="errorLabel" Content="Invalid Username or password" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Hidden"/>
+
+        </Grid>
+        <Label x:Name="curr_usr" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,220,0,10"/>
+        <Grid x:Name="timgrid" Visibility="Collapsed">
+            <Button x:Name="ClockIBtn" Content="Clock In" Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0" Visibility="Visible" Click="ClockIBtn_Click"/>
+            <Button x:Name="ClockOutBtn" Content="Clock Out" Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,240,0,0" Visibility="Visible" Click="ClockOutBtn_Click"/>
+            <Button x:Name="TaskupdateBtn" Content="Update Tasks" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,330,0,0" Visibility="Visible" Click="TaskupdateBtn_Click" />
+            <Button x:Name="customizeBtn" Content="Customize" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,330,0,0" Visibility="Visible" Click="customizeBtn_Click" />
+            <StackPanel Orientation="Horizontal" Margin="200,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="160">
+                <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label Content="Tasks"/>
+                    <DataGrid x:Name="emptaskdata" HorizontalAlignment="Center" VerticalAlignment="Top" Height="140" Visibility="Visible"  AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn x:Name="task_ti" Header="Title" Binding="{Binding title}"/>
+                            <DataGridTextColumn x:Name="task_desc" Header="Description" Binding="{Binding description}"/>
+                            <DataGridTextColumn x:Name="task_sched" Header="Scheduled Date"  Binding="{Binding scheduled, StringFormat=d}"/>
+                            <DataGridTextColumn x:Name="task_dedln" Header="Deadline"  Binding="{Binding deadline, StringFormat=d}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0">
+                    <Label Content="Projects"/>
+                    <DataGrid x:Name="emproddata" HorizontalAlignment="Center" VerticalAlignment="Top" Height="140" Visibility="Visible"  AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ItemsSource="{Binding}" Width="265">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="prod_ti" Header="Title" Binding="{Binding title}"/>
+                            <DataGridTextColumn x:Name="prod_desc" Header="Description" Binding="{Binding description}"/>
+                            <DataGridTextColumn x:Name="prod_sched" Header="Scheduled Date"  Binding="{Binding scheduled, StringFormat=d}"/>
+                            <DataGridTextColumn x:Name="prod_dedln" Header="Deadline"  Binding="{Binding deadline, StringFormat=d}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <StackPanel x:Name="AdminPanel"  Visibility="Collapsed" Height="Auto" Width="130" HorizontalAlignment="Left" Background="Black" Margin="0,170,0,0">
+            <Button x:Name="AdminTools" Foreground="White" Content="Administative Tools" Background="Black" HorizontalContentAlignment="Left" Margin="0,0,-0.4,0" Click="AdminTools_Click"/>
+            <Button x:Name="projSched" Foreground="White" Content="Projects" Background="Black" HorizontalAlignment="Stretch" Width="130" HorizontalContentAlignment="Left" Click="projSched_Click"/>
+            <Button x:Name="AdminT" Foreground="White" Content="User Control" Background="Black" HorizontalAlignment="Stretch" Width="130" HorizontalContentAlignment="Left" Click="AdminT_Click"/>
+            <Button x:Name="Cust" Foreground="White" Content="Customize" Background="Black" HorizontalContentAlignment="Left" Margin="0,0,-0.4,0" HorizontalAlignment="Left" Width="130" Click="Cust_Click"/>
+            <Button x:Name="timc" Foreground="White" Content="Time Card" Background="Black" HorizontalAlignment="Stretch" Width="130" HorizontalContentAlignment="Left" Click="timc_Click"/>
+            <Button x:Name="empst" Foreground="White" Content="Employee Status" Background="Black" HorizontalAlignment="Stretch" Width="130" HorizontalContentAlignment="Left" Click="empst_Click"/>
+
+        </StackPanel>
+
+
+
+        <Grid x:Name="admingrid" Visibility="Visible"  Margin="130,170,-0.4,-0.4">
+
+            <TabControl x:Name="tabCon" Visibility="Collapsed">
+                <TabItem Header="Employees">
+                    <Grid>
+                        <DataGrid x:Name="tabempgrid" VerticalAlignment="Center" Margin="10,10,10,10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="empName1" Header="Name" Binding="{Binding empName}"/>
+                                <DataGridTextColumn x:Name="empTitle1" Header="Job Title" Binding="{Binding title}"/>
+                                <DataGridTextColumn x:Name="empPay1" Header="Address"  Binding="{Binding address}"/>
+                                <DataGridTextColumn x:Name="empAddress1" Header="Phone Number"  Binding="{Binding phoneNum}"/>
+                                <DataGridTextColumn x:Name="empEmail1" Header="E-mail"  Binding="{Binding email}"/>
+                                <DataGridTextColumn x:Name="workedHours1" Header="Hours Worked"  Binding="{Binding hoursWorked}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Timecard" >
+                    <Grid>
+                        <StackPanel>
+
+                        </StackPanel>
+                        <DataGrid x:Name="tabtimeData" Margin="10,60,5,5" Height="Auto" Opacity=".7" Visibility="Visible" AutoGenerateColumns="False" ItemsSource="{Binding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="timename" Header="Name" Binding="{Binding name}"/>
+                                <DataGridTextColumn x:Name="timeuserName" Header="user name" Binding="{Binding user_name}"/>
+                                <DataGridTextColumn x:Name="timepassword" Header="password"  Binding="{Binding pwd}"/>
+                                <DataGridTextColumn x:Name="timelevel" Header="level"  Binding="{Binding level}"/>
+                                <DataGridTextColumn x:Name="timeem1" Header="email"  Binding="{Binding email}"/>
+                                <DataGridTextColumn x:Name="timedate" Header="Date"  Binding="{Binding dt, StringFormat=d}" />
+                                <DataGridTextColumn x:Name="timeempName" Header="Name" Binding="{Binding employee}"/>
+                                <DataGridTextColumn x:Name="timeClockinT" Header="Clock In Time"  Binding="{Binding clockIn}"/>
+                                <DataGridTextColumn x:Name="timeClockOutT" Header="Clock Out Time"  Binding="{Binding clockOut}"/>
+                                <DataGridTextColumn x:Name="timetotH" Header="Total Hours"  Binding="{Binding totalHours}"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Projects" >
+                    <Grid>
+                        <DataGrid x:Name="tabproddata" VerticalAlignment="Center" Margin="10,10,10,10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="prodtitle" Header="Name" Binding="{Binding title}"/>
+                                <DataGridTextColumn x:Name="proddesc" Header="Job Title" Binding="{Binding description}"/>
+                                <DataGridTextColumn x:Name="prodscheduled" Header="Phone Number"  Binding="{Binding scheduled}"/>
+                                <DataGridTextColumn x:Name="proddeadline" Header="E-mail"  Binding="{Binding deadline}"/>
+                                <DataGridTextColumn x:Name="prodcompletedon" Header="Hours Worked"  Binding="{Binding completedon}"/>
+                                <DataGridTextColumn x:Name="prodcompleted" Header="Hours Worked"  Binding="{Binding completed}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Tasks">
+                    <Grid>
+                        <DataGrid VerticalAlignment="Center" Margin="10,10,10,10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectionChanged="empDataGrid_SelectionChanged">>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="tasktitle" Header="Name" Binding="{Binding title}"/>
+                                <DataGridTextColumn x:Name="taskdesc" Header="Job Title" Binding="{Binding description}"/>
+                                <DataGridTextColumn x:Name="taskemp" Header="Address"  Binding="{Binding emp}"/>
+                                <DataGridTextColumn x:Name="taskscheduled" Header="Phone Number"  Binding="{Binding scheduled}"/>
+                                <DataGridTextColumn x:Name="taskdeadline" Header="E-mail"  Binding="{Binding deadline}"/>
+                                <DataGridTextColumn x:Name="taskcompletedon" Header="Hours Worked"  Binding="{Binding completedon}"/>
+                                <DataGridTextColumn x:Name="taskcompleted" Header="Hours Worked"  Binding="{Binding completed}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+            <StackPanel x:Name="usrpan"  Orientation="Vertical" Visibility="Collapsed" Margin="0,0,430,0">
+                <Button x:Name="newusr" Content="Create New User" Height="50" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,10,0,0" Click="newusr_Click"/>
+                <Button x:Name="editusr" Content="Edit Users" Height="50" Width="130" HorizontalAlignment="Left" Margin="30,10,0,0" Click="editusr_Click"/>
+                <Button x:Name="viewusr" Content="View Users" Height="50" Width="130" HorizontalAlignment="Left" Margin="30,10,0,0" Click="viewusr_Click"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Visibility="Collapsed"  Margin="0,0,430,0">
+                <Button x:Name="tcsettings" Content="Time Card Settings" Height="50" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,10,0,0" Click="newusr_Click"/>
+            </StackPanel>
+
+            <StackPanel x:Name="labpan" Orientation="Vertical" Visibility="Collapsed" Margin="10,10,536.6,0">
+                <Label Content="Name"/>
+                <Label Content="User Name"/>
+                <Label Content="Password"/>
+                <Label Content="Level"/>
+            </StackPanel>
+
+            <StackPanel  x:Name="txtpan" Orientation="Vertical" Visibility="Collapsed"  Margin="95,10,0,0">
+                <TextBox x:Name="nameField" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                <TextBox x:Name="usrnameField" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                <TextBox x:Name="passwordField" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                <TextBox x:Name="levelField" Width="100" HorizontalAlignment="Left" Margin="5"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button HorizontalAlignment="Left" Width="50" Height="20" Content="Back" Click="Button_Click_3"/>
+                    <Button HorizontalAlignment="Left" Width="70" Height="20" Margin="10,0,0,0" Content="Create User" Click="Button_Click_2"/>
+                </StackPanel>
+
+                <Label x:Name="elab" Foreground="Red" Content="Error!" Visibility="Collapsed"/>
+                <Label x:Name="slab" Foreground="Green" Content="User Created Succesfully" Visibility="Collapsed"/>
+
+            </StackPanel>
+
+            <StackPanel x:Name="emppan" Orientation="Vertical" Width="100" HorizontalAlignment="Left" Margin="10" Visibility="Collapsed">
+                <Button x:Name="schedt" Content="Shedule a task" Height="50" Margin="0,10" Click="schedt_Click"/>
+                <Button x:Name="schedv" Content="View Tasks" Height="50" Margin="0,10" Click="schedv_Click"/>
+                <Button x:Name="schedp" Content="Schedule a Project" Height="50" Margin="0,10" Click="schedp_Click"/>
+                <Button x:Name="schedpv" Content="View Projects" Height="50" Margin="0,10" Click="schedpv_Click"/>
+            </StackPanel>
+
+            <Grid x:Name="empGrid" Visibility="Collapsed">
+                <StackPanel Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Button x:Name="empEdit" Content="Edit Employee Data" Height="40" Width="100" HorizontalAlignment="Left" FontSize="10" VerticalAlignment="Top" Margin="10,10" Click="empEdit_Click"/>
+                    <Button x:Name="empAdd" Content="Add Employee" Height="40" Width="100" HorizontalAlignment="Left" FontSize="10" VerticalAlignment="Top" Margin="10,10" Click="empAdd_Click"/>
+                    <Button x:Name="empRemove" Content="Remove Employee" Height="40" Width="100" HorizontalAlignment="Left" FontSize="10" VerticalAlignment="Top" Margin="10,10" Click="empRemove_Click"/>
+                </StackPanel>
+
+                <DataGrid x:Name="empDataGrid" VerticalAlignment="Center" Margin="10,65,10,18" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectionChanged="empDataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="empoyName" Header="Name" Binding="{Binding empName}"/>
+                        <DataGridTextColumn x:Name="empTitle" Header="Job Title" Binding="{Binding title}"/>
+                        <DataGridTextColumn x:Name="empPay" Header="Address"  Binding="{Binding address}"/>
+                        <DataGridTextColumn x:Name="empAddress" Header="Phone Number"  Binding="{Binding phoneNum}"/>
+                        <DataGridTextColumn x:Name="empEmail" Header="E-mail"  Binding="{Binding email}"/>
+                        <DataGridTextColumn x:Name="workedHours" Header="Hours Worked"  Binding="{Binding hoursWorked}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid x:Name="empAddGrid" Visibility="Collapsed">
+
+                <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" Margin="10" Width="100">
+                    <Label Content="Name" Margin="0,0,0,2"/>
+                    <Label Content="Title" Margin="0,0,0,2"/>
+                    <Label Content="Address" Margin="0,0,0,2"/>
+                    <Label Content="Phone Number" Margin="0,0,0,2"/>
+                    <Label Content="Email" Margin="0,0,0,2"/>
+                    <Label Content="Add Time Card" Margin="0,0,0,2"/>
+                    <Label x:Name="userLab" Content="Username" Margin="0,0,0,2" Visibility="Collapsed"/>
+                    <Label x:Name="passwordLab" Content="Password" Margin="0,0,0,2" Visibility="Collapsed"/>
+                    <Label x:Name="levelLab" Content="Level" Margin="0,0,0,2" Visibility="Collapsed"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Visibility="Visible"  Margin="95,10,0,0">
+                    <TextBox x:Name="empNamefd" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox x:Name="empTitlefd" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox x:Name="empAddrfd" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox x:Name="empPhoneNumfd" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox x:Name="empEmailfd" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <CheckBox x:Name="usrAddcheck" Margin="5,7" Checked="usrAddcheck_Checked" Unchecked="usrAddcheck_UNChecked"/>
+                    <TextBox x:Name="timeCAddnameField" Width="100" HorizontalAlignment="Left" Margin="5" Visibility="Collapsed"/>
+                    <TextBox x:Name="timeCAddpwdField" Width="100" HorizontalAlignment="Left" Margin="5" Visibility="Collapsed"/>
+                    <TextBox x:Name="timeCAddlevelField" Width="100" HorizontalAlignment="Left" Margin="5" Visibility="Collapsed"/>
+
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button HorizontalAlignment="Left" Width="50" Height="20" Content="Back" Click="Button_Click_7"/>
+                        <Button HorizontalAlignment="Left" Width="80" Height="20" Margin="10,0,0,0" Content="Add Employee" Click="Button_Click_6"/>
+                    </StackPanel>
+
+                    <Label x:Name="empError" Foreground="Red" Content="Error!" Visibility="Collapsed"/>
+                    <Label x:Name="empSucess" Foreground="Green" Content="Employee Added Succesfully" Visibility="Collapsed"/>
+
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="taskScheduleGrid" Visibility="Collapsed" >
+                <StackPanel Orientation="Vertical" Margin="10,10,536.6,0">
+                    <Label Content="Title"/>
+                    <Label Content="Description" Margin="0,0,0,65"/>
+                    <Label Content="Employee"/>
+                    <Label Content="Deadline"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="95,10,0,0">
+                    <TextBox x:Name="titleField1" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox x:Name="descField1" Width="100" Height="80" HorizontalAlignment="Left" TextWrapping="Wrap"  Margin="5,5,0,5"/>
+                    <TextBox x:Name="nameField1" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <DatePicker x:Name="date1" Width="100" HorizontalAlignment="Left" Margin="5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0, 10">
+                        <Button HorizontalAlignment="Left" Width="50" Height="20" Content="Back" Click="Button_Click_5"/>
+                        <Button HorizontalAlignment="Left" Width="70" Height="20" Margin="10,0,0,0" Content="Create Task" Click="Button_Click_4"/>
+                    </StackPanel>
+
+                    <Label x:Name="elab1" Foreground="Red" Content="Error!" Visibility="Collapsed"/>
+                    <Label x:Name="slab1" Foreground="Green" Content="Task Created Succesfully" Visibility="Collapsed"/>
+
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="projectScheduleGrid" Visibility="Collapsed">
+                <StackPanel Orientation="Vertical" Margin="10,10,536.6,0">
+                    <Label Content="Title"/>
+                    <Label Content="Description" Margin="0,0,0,65"/>
+                    <Label Content="Deadline"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="95,10,0,0">
+                    <TextBox x:Name="titleField2" Width="100" HorizontalAlignment="Left" Margin="5"/>
+                    <TextBox x:Name="descField2" Width="100" Height="80" HorizontalAlignment="Left" TextWrapping="Wrap"  Margin="5,5,0,5"/>
+                    <DatePicker x:Name="projDate" Width="100" HorizontalAlignment="Left"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0, 10">
+                        <Button HorizontalAlignment="Left" Width="50" Height="20" Content="Back" Click="Button_Click_5"/>
+                        <Button HorizontalAlignment="Left" Width="70" Height="20" Margin="10,0,0,0" Content="Create Task" Click="Button_Click_8"/>
+                    </StackPanel>
+
+                    <Label x:Name="elab2" Foreground="Red" Content="Error!" Visibility="Collapsed"/>
+                    <Label x:Name="slab2" Foreground="Green" Content="Task Created Succesfully" Visibility="Collapsed"/>
+
+                </StackPanel>
+            </Grid>
+
+            <Button x:Name="back2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Back" Height="30" Width="70" Margin="0,0,213.6,85.6" Visibility="Collapsed" Click="back2_Click"/>
+            <Button x:Name="sqls" Content="SQL Shell" Height="50" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,10,0,0" Visibility="Collapsed" Click="sqls_Click"/>
+            <Button x:Name="bugR" Content="Report a Bug" Height="50" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,10,0,0" Visibility="Collapsed" Click="bugR_Click"/>
+
+            <StackPanel x:Name="bugPanel"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,10,0,0"  Visibility="Collapsed" Orientation="Vertical" Height="316">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label Content="Report Title:" VerticalAlignment="Top" Height="26" Width="75" Margin="10"/>
+                    <TextBox x:Name="bgTxt" VerticalAlignment="Top" Height="26" Width="200" Margin="10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Description:" VerticalAlignment="Top" Height="50" Width="75" Margin="10"/>
+                    <TextBox x:Name="bg1Txt" VerticalAlignment="Top" Height="115" Width="200" Margin="10"/>
+
+                </StackPanel>
+                <Button x:Name="bugEnter" Content="Send Report" Height="20" Width="75" HorizontalAlignment="Right" Margin="10" Click="bugEnter_Click"/>
+            </StackPanel>
+
+            <StackPanel x:Name="sqlpan" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,10,0,0"  Visibility="Collapsed" Orientation="Horizontal">
+                <TextBox x:Name="sqltxt"  Height="30" Width="130" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button x:Name="sqlbtn" Content="Enter" Height="30" Width="130" VerticalAlignment="Top" HorizontalAlignment="Right" Click="sqlbtn_Click"/>
+            </StackPanel>
+            <Label x:Name="sqllab" Content="SQL Error" Visibility="Collapsed"/>
+
+            <StackPanel x:Name="vwTime" Orientation="Horizontal" VerticalAlignment="Top" Visibility="Collapsed" >
+
+                <Label Content="View: " Margin="10,35,0,0"/>
+                <ComboBox x:Name="viewSelect" Width="80" HorizontalAlignment="Left" Margin="10,35,0,0" SelectionChanged="ComboBox_SelectionChanged" >
+                    <ComboBoxItem>Week</ComboBoxItem>
+                    <ComboBoxItem Visibility="Collapsed">Month</ComboBoxItem>
+                    <ComboBoxItem Visibility="Collapsed" >Year</ComboBoxItem>
+                </ComboBox>
+                <Label Content="Sort By: " Margin="30,35,0,0"/>
+                <ComboBox x:Name="sortSelect" VerticalAlignment="Top" Width="80" HorizontalAlignment="Left" Margin="10,35,0,0" SelectionChanged="ComboBox_SelectionChanged_1">
+                    <ComboBoxItem>Date</ComboBoxItem>
+                    <ComboBoxItem>Employee</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <DataGrid x:Name="data3" VerticalAlignment="Center" Visibility="Collapsed" AutoGenerateColumns="False" Margin="0,90,0,50"  ItemsSource="{Binding}" Height="196">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="date3" Header="Date"  Binding="{Binding dt, StringFormat=d}" />
+                    <DataGridTextColumn x:Name="empName3" Header="Name" Binding="{Binding employee}"/>
+                    <DataGridTextColumn x:Name="ClockinT3" Header="Clock In Time"  Binding="{Binding clockin}"/>
+                    <DataGridTextColumn x:Name="ClockOut3T" Header="Clock Out Time"  Binding="{Binding clockout}"/>
+                    <DataGridTextColumn x:Name="totH3" Header="Total Hours"  Binding="{Binding totalHours}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+
+        <DataGrid x:Name="data2" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" AutoGenerateColumns="False" Margin="153,193,201.6,117.6"  ItemsSource="{Binding}" Height="195" Width="407">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="name2" Header="Name" Binding="{Binding name}"/>
+                <DataGridTextColumn x:Name="userName2" Header="user name" Binding="{Binding User_name}"/>
+                <DataGridTextColumn x:Name="password2" Header="password"  Binding="{Binding pwd}"/>
+                <DataGridTextColumn x:Name="level2" Header="level"  Binding="{Binding level}"/>
+                <DataGridTextColumn x:Name="em" Header="email"  Binding="{Binding email}"/>
+
+                <DataGridTextColumn x:Name="date2" Header="Date"  Binding="{Binding dt, StringFormat=d}" />
+                <DataGridTextColumn x:Name="empName2" Header="Name" Binding="{Binding employee}"/>
+                <DataGridTextColumn x:Name="ClockinT2" Header="Clock In Time"  Binding="{Binding clockIn}"/>
+                <DataGridTextColumn x:Name="ClockOut2T" Header="Clock Out Time"  Binding="{Binding clockOut}"/>
+                <DataGridTextColumn x:Name="totH2" Header="Total Hours"  Binding="{Binding totalHours}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="data" VerticalAlignment="Center" Margin="10,300,10,10" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="name" Header="Name" Binding="{Binding name}"/>
+                <DataGridTextColumn x:Name="userName" Header="user name" Binding="{Binding user_name}"/>
+                <DataGridTextColumn x:Name="password" Header="password"  Binding="{Binding pwd}"/>
+                <DataGridTextColumn x:Name="level" Header="level"  Binding="{Binding level}"/>
+                <DataGridTextColumn x:Name="em1" Header="email"  Binding="{Binding email}"/>
+                <DataGridTextColumn x:Name="date" Header="Date"  Binding="{Binding dt, StringFormat=d}" />
+                <DataGridTextColumn x:Name="empName" Header="Name" Binding="{Binding employee}"/>
+                <DataGridTextColumn x:Name="ClockinT" Header="Clock In Time"  Binding="{Binding clockIn}"/>
+                <DataGridTextColumn x:Name="ClockOutT" Header="Clock Out Time"  Binding="{Binding clockOut}"/>
+                <DataGridTextColumn x:Name="totH" Header="Total Hours"  Binding="{Binding totalHours}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</Window>
