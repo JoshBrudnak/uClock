@@ -70,6 +70,7 @@
             <Label x:Name="errorLabel" Content="Invalid Username or password" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Hidden"/>
         </Grid>
         <Label x:Name="curr_usr" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,220,0,10"/>
-        <local:AdminControl  x:Name="LogView" />
+        <local:AdminControl  x:Name="Administrator" Visibility="Collapsed"/>
+        <local:EmpControl x:Name="Employee" Visibility="Collapsed"/>
     </Grid>
 </Window>

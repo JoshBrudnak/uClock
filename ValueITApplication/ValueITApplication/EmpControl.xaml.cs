@@ -19,6 +19,11 @@ namespace ValueITApplication
         DataTable dt = new DataTable();
         private string nm;
 
+        public EmpControl()
+        {
+            InitializeComponent();
+        }
+
         public EmpControl(string name)
         {
             InitializeComponent();

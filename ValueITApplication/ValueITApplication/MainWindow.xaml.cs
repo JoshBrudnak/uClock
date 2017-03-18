@@ -104,6 +104,8 @@
                     this.curr_usr.Content = "You are currently signed in as " + this.nm + ".";
                     this.logInGrid.Visibility = Visibility.Collapsed;
                     this.logIn.Visibility = Visibility.Collapsed;
+
+                    this.Employee.Visibility = Visibility.Visible;
                 }
 
                 // More Privilaged User not in use
@@ -121,6 +123,8 @@
                     this.curr_usr.Content = "You are currently signed in as " + this.nm + ".";
                     this.logInGrid.Visibility = Visibility.Collapsed;
                     this.logIn.Visibility = Visibility.Collapsed;
+
+                    this.Administrator.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -137,6 +141,8 @@
         {
             this.logoff.Visibility = Visibility.Collapsed;
             this.curr_usr.Visibility = Visibility.Collapsed;
+            this.Administrator.Visibility = Visibility.Collapsed;
+            this.Employee.Visibility = Visibility.Collapsed;
 
             tiLabel.Visibility = Visibility.Visible;
             dtLabel.Visibility = Visibility.Visible;
