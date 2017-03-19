@@ -132,6 +132,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="datasource.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="icon3.png" />
   </ItemGroup>
   <ItemGroup>
@@ -139,12 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ValueITlogo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="datasource.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="timeIcon.jpg" />

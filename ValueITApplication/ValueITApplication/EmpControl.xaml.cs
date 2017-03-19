@@ -28,7 +28,14 @@ namespace ValueITApplication
         {
             InitializeComponent();
 
+            emptool.Visibility = Visibility.Visible;
+            timgrid.Visibility = Visibility.Visible;
             nm = name;
+        }
+
+        public void setName(string name)
+        {
+            this.nm = name;
         }
 
         private void setupUser()

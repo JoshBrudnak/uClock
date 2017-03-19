@@ -9,40 +9,13 @@ namespace ValueitServer
 {
     class SqlUtil
     {
-       
-        public string parseConnectionString()
+        public string getConnectionString()
         {
-            string connect;
-            string name = "";
-            string address = "";
-            string uid = "";
-            string password = "";
+            System.IO.StreamReader file = new System.IO.StreamReader("DataSource.txt");
 
-            XmlReader doc = XmlReader.Create("datasource.xml");
-            doc.Read();
-            doc.ReadStartElement("connectionString");
+            string connection = file.ReadLine();
 
-            doc.ReadStartElement("name");
-            name = doc.ReadString();
-            doc.ReadEndElement();
-
-            doc.ReadStartElement("address");
-            address = doc.ReadString();
-            doc.ReadEndElement();
-
-            doc.ReadStartElement("uid");
-            uid = doc.ReadString();
-            doc.ReadEndElement();
-
-            doc.ReadStartElement("password");
-            password = doc.ReadString();
-            doc.ReadEndElement();
-
-            doc.ReadEndElement();
-
-            connect = "server=" + name + ";database=" + address + ";uid=" + uid + ";pwd=" + password + ";";
-
-            return connect;
+            return connection;
         }
     }
 }

@@ -8,13 +8,14 @@
         Title="Value IT Consulting"
         x:Name="nywin">
 
+
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label x:Name="nserv" Content="Could not connect to the server" Margin="0,180,0,0" Foreground="Red" Visibility="Collapsed"/>
             <Label x:Name="inconlab" Content="Could not connect to the Internet" HorizontalAlignment="Right" Margin="0,180,10,10" Foreground="Red" Visibility="Collapsed"/>
         </StackPanel>
-        <Label x:Name="tiLabel" Content="time" FontSize="60" Visibility="Collapsed" Height="100" Margin="10,160" VerticalAlignment="Top"/>
-        <Label x:Name="dtLabel" Content="Date" FontSize="60" Visibility="Collapsed" Margin="10,240,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="tiLabel" Content="time" FontSize="60" Visibility="Visible" Height="100" Margin="10,160" VerticalAlignment="Top"/>
+        <Label x:Name="dtLabel" Content="Date" FontSize="60" Visibility="Visible" Margin="10,240,0,0" VerticalAlignment="Top"/>
 
         <Grid Height="240" VerticalAlignment="Top" >
             <Border BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Stretch" Margin="0,0,0,70" VerticalAlignment="Stretch"/>
@@ -44,8 +45,8 @@
             </StackPanel>
 
         </Grid>
-        <Grid x:Name="logInGrid" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Height="120" Width="200">
-            <StackPanel Height="60" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid x:Name="logInGrid" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80">
+            <StackPanel Height="100" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Label Content="Username" VerticalAlignment="Top" HorizontalAlignment="Left" ForceCursor="True"/>
                 <Label Content="Password" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             </StackPanel>
@@ -70,7 +71,7 @@
             <Label x:Name="errorLabel" Content="Invalid Username or password" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Hidden"/>
         </Grid>
         <Label x:Name="curr_usr" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,220,0,10"/>
-        <local:AdminControl  x:Name="Administrator" Visibility="Collapsed"/>
-        <local:EmpControl x:Name="Employee" Visibility="Collapsed"/>
+        <local:AdminControl x:Name="Administrator" Margin="0,170,0,0" Visibility="Collapsed"/>
+        <local:EmpControl x:Name="Employee" Margin="0,170,0,0" Visibility="Collapsed"/>
     </Grid>
 </Window>

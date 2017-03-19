@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ValueITApplication"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
-        <StackPanel x:Name="AdminPanel"  Visibility="Collapsed" Height="Auto" Width="130" HorizontalAlignment="Left" Background="Black" Margin="0,170,0,0">
+        <StackPanel x:Name="AdminPanel"  Visibility="Visible" Height="Auto" Width="130" HorizontalAlignment="Left" Background="Black">
             <Button x:Name="AdminTools" Foreground="White" Content="Administative Tools" Background="Black" HorizontalContentAlignment="Left" Margin="0,0,-0.4,0" Click="AdminTools_Click"/>
             <Button x:Name="projSched" Foreground="White" Content="Projects" Background="Black" HorizontalAlignment="Stretch" Width="130" HorizontalContentAlignment="Left" Click="projSched_Click"/>
             <Button x:Name="AdminT" Foreground="White" Content="User Control" Background="Black" HorizontalAlignment="Stretch" Width="130" HorizontalContentAlignment="Left" Click="AdminT_Click"/>
@@ -17,12 +17,12 @@
 
         </StackPanel>
 
-        <Grid x:Name="admingrid" Visibility="Visible"  Margin="130,170,-0.4,-0.4">
+        <Grid x:Name="admingrid" Visibility="Visible" Margin="130,0,0,0">
 
-            <TabControl x:Name="tabCon" Visibility="Collapsed">
+            <TabControl x:Name="tabCon" Visibility="Visible">
                 <TabItem Header="Employees">
                     <Grid>
-                        <DataGrid x:Name="tabempgrid" VerticalAlignment="Center" Margin="10,10,10,10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" >
+                        <DataGrid x:Name="tabempgrid" VerticalAlignment="Center" Margin="10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="empName1" Header="Name" Binding="{Binding empName}"/>
                                 <DataGridTextColumn x:Name="empTitle1" Header="Job Title" Binding="{Binding title}"/>
@@ -39,7 +39,7 @@
                         <StackPanel>
 
                         </StackPanel>
-                        <DataGrid x:Name="tabtimeData" Margin="10,60,5,5" Height="Auto" Opacity=".7" Visibility="Visible" AutoGenerateColumns="False" ItemsSource="{Binding}">
+                        <DataGrid x:Name="tabtimeData" Margin="10" Height="Auto" Opacity=".7" Visibility="Visible" AutoGenerateColumns="False" ItemsSource="{Binding}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="timename" Header="Name" Binding="{Binding name}"/>
                                 <DataGridTextColumn x:Name="timeuserName" Header="user name" Binding="{Binding user_name}"/>
@@ -59,7 +59,7 @@
                 </TabItem>
                 <TabItem Header="Projects" >
                     <Grid>
-                        <DataGrid x:Name="tabproddata" VerticalAlignment="Center" Margin="10,10,10,10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}">
+                        <DataGrid x:Name="tabproddata" VerticalAlignment="Center" Margin="10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="prodtitle" Header="Name" Binding="{Binding title}"/>
                                 <DataGridTextColumn x:Name="proddesc" Header="Job Title" Binding="{Binding description}"/>
@@ -73,7 +73,7 @@
                 </TabItem>
                 <TabItem Header="Tasks">
                     <Grid>
-                        <DataGrid VerticalAlignment="Center" Margin="10,10,10,10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectionChanged="empDataGrid_SelectionChanged">>
+                        <DataGrid VerticalAlignment="Center" Margin="10" Height="253" AutoGenerateColumns="False" ItemsSource="{Binding}" SelectionChanged="empDataGrid_SelectionChanged">>
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="tasktitle" Header="Name" Binding="{Binding title}"/>
                                 <DataGridTextColumn x:Name="taskdesc" Header="Job Title" Binding="{Binding description}"/>

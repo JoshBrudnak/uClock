@@ -12,7 +12,7 @@ namespace ValueITApplication
     /// <summary>
     /// Interaction logic for AdminControl.xaml
     /// </summary>
-    public partial class AdminControl : System.Windows.Controls.UserControl
+    public partial class AdminControl : UserControl
     {
         private DataTable dt = new DataTable();
         private SqlCommand com = new SqlCommand();
@@ -20,21 +20,20 @@ namespace ValueITApplication
 
         private bool timecardb = true;
         public string selVal = "";
+        private string name = "";
 
-        private string col;
+        private string col = "";
 
         public AdminControl()
         {
             InitializeComponent();
         }
-
-        public AdminControl(string col)
+       
+        public void setSetCol()
         {
-            InitializeComponent();
 
-            this.col = col;
         }
-
+        
         private void setupAdmin()
         {
             

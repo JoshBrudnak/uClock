@@ -15,12 +15,7 @@
         private Util tool = new Util();
         private ObservableCollection<Person> Names;
 
-        private string col;
         private string nm;
-        private string sort;
-        private string view;
-        private string selVal;
-        private bool timecardb;
 
         public MainWindow()
         {
@@ -32,21 +27,14 @@
 
             this.InitializeComponent();
 
-            com.useDb();
-
             this.Visibility = Visibility.Visible;
             this.ShowInTaskbar = true;
             this.WindowState = WindowState.Normal;
 
-            if (dbConn == false)
-            {
-                nserv.Visibility = Visibility.Visible;
-            }
+            if (dbConn == false) nserv.Visibility = Visibility.Visible;
+       
+            if (inConn == false) inconlab.Visibility = Visibility.Visible;
 
-            if (inConn == false)
-            {
-                inconlab.Visibility = Visibility.Visible;
-            }
             DispatcherTimer dtClockTime = new DispatcherTimer();
             dtClockTime.Interval = new TimeSpan(0, 0, 1);
             dtClockTime.Tick += dtClockTime_Tick;
@@ -85,8 +73,7 @@
             dt = this.com.Login(this.usr_n.Text, this.user_password.Password);
 
             if (dt.Rows.Count == 0)
-            {
-
+            { 
                 this.errorLabel.Visibility = Visibility.Visible;
                 this.usr_n.Clear();
                 this.user_password.Clear();
@@ -106,6 +93,9 @@
                     this.logIn.Visibility = Visibility.Collapsed;
 
                     this.Employee.Visibility = Visibility.Visible;
+                    this.logoff.Visibility = Visibility.Visible;
+
+                    this.Employee.setName(nm);
                 }
 
                 // More Privilaged User not in use
@@ -114,6 +104,8 @@
                     this.curr_usr.Content = "You are currently signed in as " + this.nm + ".";
                     this.logInGrid.Visibility = Visibility.Collapsed;
                     this.logIn.Visibility = Visibility.Collapsed;
+
+                    this.logoff.Visibility = Visibility.Visible;
 
                 }
 
@@ -124,7 +116,8 @@
                     this.logInGrid.Visibility = Visibility.Collapsed;
                     this.logIn.Visibility = Visibility.Collapsed;
 
-                    this.Administrator.Visibility = Visibility.Visible;
+                    Administrator.Visibility = Visibility.Visible;
+                    this.logoff.Visibility = Visibility.Visible;
                 }
                 else
                 {

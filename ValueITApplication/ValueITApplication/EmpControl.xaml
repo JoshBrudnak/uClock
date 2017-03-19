@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <ToolBar x:Name="emptool" VerticalAlignment="Bottom" Background="Black" Visibility="Collapsed">
+             d:DesignHeight="400" d:DesignWidth="700">
+    <Grid Background="White">
+        <ToolBar x:Name="emptool" VerticalAlignment="Top" Background="Black" Visibility="Visible">
             <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="40" Width="40" Click="Button_Click">
                 <Image Source="icon2-info.png"/>
             </Button>
@@ -15,11 +15,11 @@
             </Button>
         </ToolBar>
         <Grid x:Name="timgrid" Visibility="Visible">
-            <Button x:Name="ClockIBtn" Content="Clock In" Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0" Visibility="Visible" Click="ClockIBtn_Click"/>
-            <Button x:Name="ClockOutBtn" Content="Clock Out" Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,240,0,0" Visibility="Visible" Click="ClockOutBtn_Click"/>
-            <Button x:Name="TaskupdateBtn" Content="Update Tasks" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,330,0,0" Visibility="Visible" Click="TaskupdateBtn_Click" />
-            <Button x:Name="customizeBtn" Content="Customize" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,330,0,0" Visibility="Visible" Click="customizeBtn_Click" />
-            <StackPanel Orientation="Horizontal" Margin="200,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="160">
+            <Button x:Name="ClockIBtn" Content="Clock In" Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Visibility="Visible" Click="ClockIBtn_Click"/>
+            <Button x:Name="ClockOutBtn" Content="Clock Out" Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,60,0,0" Visibility="Visible" Click="ClockOutBtn_Click"/>
+            <Button x:Name="TaskupdateBtn" Content="Update Tasks" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,160,0,0" Visibility="Visible" Click="TaskupdateBtn_Click" />
+            <Button x:Name="customizeBtn" Content="Customize" Height="40" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,160,0,0" Visibility="Visible" Click="customizeBtn_Click" />
+            <StackPanel Orientation="Horizontal" Margin="200,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="160">
                 <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Label Content="Tasks"/>
                     <DataGrid x:Name="emptaskdata" HorizontalAlignment="Center" VerticalAlignment="Top" Height="140" Visibility="Visible"  AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ItemsSource="{Binding}">
@@ -45,7 +45,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <DataGrid x:Name="data" VerticalAlignment="Center" Margin="10,300,10,10" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}">
+        <DataGrid x:Name="data" VerticalAlignment="Center" Margin="10,150,10,10" Visibility="Visible" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="name" Header="Name" Binding="{Binding name}"/>
                 <DataGridTextColumn x:Name="userName" Header="user name" Binding="{Binding user_name}"/>
