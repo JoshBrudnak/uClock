@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-namespace ValueITApplication
+namespace uClock
 {
     /// <summary>
     /// Interaction logic for EmpControl.xaml

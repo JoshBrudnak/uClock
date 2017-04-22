@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ValueITApplication
+namespace uClock
 {
     /// <summary>
     /// Used to create a list of users

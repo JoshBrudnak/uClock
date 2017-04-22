@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace ValueITApplication
+namespace uClock
 {
     /// <summary>
     /// Interaction logic for Window1.xaml

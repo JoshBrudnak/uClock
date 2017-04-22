@@ -1,13 +1,11 @@
-﻿
-namespace ValueITApplication
+﻿namespace uClock
 {
     using System;
     using System.Net.NetworkInformation;
     using System.Windows;
-    using SystemWon;
 
     /// <summary>
-    /// Methods for redundant tasks in Value IT Application
+    /// Methods for redundant tasks in uClock
     /// </summary>
     public class Util
     {

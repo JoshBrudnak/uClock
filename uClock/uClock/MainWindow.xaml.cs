@@ -1,4 +1,4 @@
-﻿namespace ValueITApplication
+﻿namespace uClock
 {
     using System;
     using System.Collections.ObjectModel;
