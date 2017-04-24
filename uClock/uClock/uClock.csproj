@@ -53,9 +53,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="SystemWon">
-      <HintPath>..\..\SystemWon\SystemWon\bin\Debug\SystemWon.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -136,6 +133,7 @@
   <ItemGroup>
     <Resource Include="datasource.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icon3.png" />
   </ItemGroup>

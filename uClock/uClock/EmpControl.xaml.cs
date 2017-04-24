@@ -15,7 +15,7 @@ namespace uClock
     /// </summary>
     public partial class EmpControl : UserControl
     {
-        SqlCommand com = new SqlCommand();
+        SqlQuery com = new SqlQuery();
         DataTable dt = new DataTable();
         private string nm;
 

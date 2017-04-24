@@ -10,24 +10,27 @@
     public partial class MainWindow : Window
     {
 
-        private SqlCommand com = new SqlCommand();
-        private DataTable dt = new DataTable();
-        private Util tool = new Util();
+        private SqlQuery com;
+        private DataTable dt;
+        private Util tool;
         private ObservableCollection<Person> Names;
 
         private string nm;
 
         public MainWindow()
         {
+            com = new SqlQuery();
+            dt = new DataTable();
+            tool = new Util();
 
             Names = new ObservableCollection<Person>();
+
+            this.InitializeComponent();
+            this.Visibility = Visibility.Visible;
 
             bool inConn = tool.CheckConnection();
             bool dbConn = com.useDb();
 
-            this.InitializeComponent();
-
-            this.Visibility = Visibility.Visible;
             this.ShowInTaskbar = true;
             this.WindowState = WindowState.Normal;
 

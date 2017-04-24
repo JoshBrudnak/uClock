@@ -313,8 +313,6 @@
         public DataTable SelectTimeM()
         {
             string Month = DateTime.Now.Month.ToString();
-            int i = 0;
-            int g = 7;
 
             string com = "SELECT COUNT(*) FROM TimeClock WHERE Month(dt) = @Month;";
             string command = this.sql.NetSQLCommand(com, Month);

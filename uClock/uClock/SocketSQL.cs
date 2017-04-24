@@ -9,7 +9,6 @@ namespace uClock
 {
     public class SocketSQL
     {
-
         string ip1;
         int tcp1;
 
@@ -19,11 +18,10 @@ namespace uClock
         {
             ip1 = ip;
             tcp1 = tcp;
-
-            client = new TcpClient();
         }
 
-        private SocketSQL() { }
+        private SocketSQL() {
+        }
 
         public bool sendPacket(NetworkStream stream, string data)
         {
@@ -49,10 +47,13 @@ namespace uClock
 
         public string NetSQLCommand(int packetNum, string comm, string[] parameters)
         {
+            client = new TcpClient();
             client.Connect(IPAddress.Parse(ip1), tcp1);
             NetworkStream stream = client.GetStream();
+            byte[] byteStream = new byte[2040];
 
             this.sendPacket(stream, packetNum.ToString());
+            stream.Read(byteStream, 0, byteStream.Length);
             this.sendPacket(stream, comm);
 
             for (int j = 0; j < parameters.Length; j++)
@@ -60,7 +61,6 @@ namespace uClock
                 this.sendPacket(stream, parameters[j]);
             }
 
-            byte[] byteStream = new byte[2040];
             stream.Read(byteStream, 0, byteStream.Length);
 
             int[] bytesAsInts = new int[2040];
@@ -86,13 +86,17 @@ namespace uClock
 
         public string NetSQLCommand(string comm, string parameter)
         {
+            client = new TcpClient();
             client.Connect(IPAddress.Parse(ip1), tcp1);
             NetworkStream stream = client.GetStream();
+            byte[] bytestream = new byte[10];
 
             this.sendPacket(stream, "3");
+            stream.Read(bytestream, 0, bytestream.Length);
             this.sendPacket(stream, comm);
 
             this.sendPacket(stream, parameter);
+            stream.Read(bytestream, 0, bytestream.Length);
 
             byte[] byteStream = new byte[2040];
             stream.Read(byteStream, 0, byteStream.Length);
@@ -120,10 +124,13 @@ namespace uClock
 
         public string NetSQLCommand(string comm)
         {
+            client = new TcpClient();
             client.Connect(IPAddress.Parse(ip1), tcp1);
             NetworkStream stream = client.GetStream();
+            byte[] bytestream = new byte[10];
 
             this.sendPacket(stream, "2");
+            stream.Read(bytestream, 0, bytestream.Length);
             this.sendPacket(stream, comm);
 
             byte[] byteStream = new byte[2040];
@@ -147,7 +154,6 @@ namespace uClock
             return cmd;
             stream.Close();
             client.Close();
-
         }
     }
 }

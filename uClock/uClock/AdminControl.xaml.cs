@@ -15,7 +15,7 @@ namespace uClock
     public partial class AdminControl : UserControl
     {
         private DataTable dt = new DataTable();
-        private SqlCommand com = new SqlCommand();
+        private SqlQuery com = new SqlQuery();
         private Util tool = new Util();
 
         private bool timecardb = true;
